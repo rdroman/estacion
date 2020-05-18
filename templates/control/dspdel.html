@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<br>
+	<div class="row">
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<label>Se eliminará el siguiente <b>Despacho</b>:</label>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Control ID</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" name="txtTurnoID" readonly="readonly" value="{{ object.turno.id }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Despacho ID</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" name="txtDespachoID" readonly="readonly" value="{{ object.id }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Producto</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" name="txtProducto" readonly="readonly" value="{{ object.producto.descripcion }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Glns.Despachados</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Vta.Descuento</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Vta.Pre.Normal</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmdsp_glndesp" name="txtfrmdsp_glndesp" readonly="readonly" value="{{ object.gal_despachados }}">
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmdsp_vtadcto" name="txtfrmdsp_vtadcto" readonly="readonly" value="{{ object.vta_descuento }}">
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmdsp_vtanorm" name="txtfrmdsp_vtanorm" readonly="readonly" value="{{ object.vta_normal }}">
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-3 col-md-3">
+			<div class="form-group">
+				<label>¿Desea eliminar el registro?</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<button class="btn btn-danger" type="submit">Sí, eliminar.</button>
+				<a class="btn btn-default" href="{% url 'control:dsplst' object.turno.id %}">Cancelar</a>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,17 @@
+ /* Para abrir el submenu de Control de Turnos */
+.dropdown-submenu {
+  position: relative;
+}
+
+/* Para abrir el submenu de Control de Turnos */
+.dropdown-submenu .dropdown-menu {
+  top: 0;
+  left: 100%;
+  margin-top: -1px;
+}
+
+@media print{
+  .ocultar-al-imprimir {
+    display:none;
+  }
+}

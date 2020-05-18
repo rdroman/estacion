@@ -1,0 +1,65 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3>Cobranzas del Turno: <b><input style="box-shadow: none; border: 0;" type="text" id="txtidturno_cbr" name="txtidturno_cbr" value="{{pkturno}}"></b></h3>
+	
+	<br>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:cbradd' pkturno %}" class="btn btn-primary" style="width: 100%">Agregar Cobranza</a>
+			</div>
+		</div>
+	</div>
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		<thead>
+			<tr>
+				<td>ID Cobranza</td>
+				<td>ID Turno</td>
+				<td>ID Credito</td>
+				<td>Cliente</td>
+				<td>Monto Cobro</td>
+				<td>Acciones</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+			{%	if miscobros_turno %}
+			{%		for micbr in miscobros_turno %}
+			<tr>
+				<td>{{ micbr.id }}</td>
+				<td>{{ micbr.turno.id }}</td>
+				<td>{{ micbr.credito.id }}</td>
+				<td>{{ micbr.credito.cliente.razonsocial }}</td>
+				<td>{{ micbr.monto_cobro }}</td>
+				<td>
+					<a class="btn btn-danger" href="{% url 'control:cbrdel' micbr.id %}">Eliminar</a>
+				</td>
+			</tr>
+			{%		endfor %}
+			{%	else %}
+			<tr><td colspan="6">NO hay COBRANZAS en este TURNO</td></tr>
+			{%	endif %}
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li class="page-item">
+				{% if page_obj.has_previous %}
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if page_obj.has_next %}
+				<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+	<a class="btn btn-warning" href="{% url 'control:ctledt' pkturno %}">Volver a Turno</a>
+</form>
+{% endblock %}

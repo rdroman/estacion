@@ -1,0 +1,76 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<h4><b>Descuento</b></h4>
+	<input type="hidden" name="hdndcto_pkdespacho" id="hdndcto_pkdespacho" value="{{iddespacho}}">
+	<input type="hidden" name="hdndcto_pkproducto" id="hdndcto_pkproducto" value="{{idproducto}}">
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Seleccione Cliente</label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					<select class="form-control" name="selclientedscto" id="selclientedscto">
+						{% if misclientes %}
+							{% for xcli in misclientes %}
+							<option value="{{ xcli.ruc }}" {% if xcli == current_xcli %} selected="selected" {% endif %}>{{ xcli.razonsocial }}</option>
+							{% endfor %}
+						{% else %}
+							<option value="-">No hay clientes registrados</option>
+						{% endif %}
+					</select>
+					{{form.cliente}} <!-- txt hidden almacena el RUC del cliente seleccionado -->
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Ingrese Cantidad</label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					{{ form.cantidad }}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Ingrese Pre. Dscto. </label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					{{ form.precio_dscto }}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Monto Descuento</label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					{{ form.monto_dscto }}
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" value="Guardar">
+					<a class="btn btn-danger" href="{% url 'control:dctlst' iddespacho idproducto %}">Regresar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,46 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<table class="table table-bordered">
+	<!-- CABECERA DE LA TABLA -->
+	<thead>
+		<tr>
+			<td>id</td>
+			<td>Fecha</td>
+			<td>Turno</td>
+			<td>Operador</td>
+			<td>Total Cuenta</td>
+			<td>Total Entrega</td>
+			<td>Diferencia</td>
+			<td>Acciones</td>
+		</tr>
+	</thead>
+	<!-- CUERPO DE LA TABLA -->
+	<tbody>
+		{%	if object_list %}
+		{%		for mictl in object_list %}
+		<tr>
+			<td>{{ mictl.id }}</td>
+			<td>{{ mictl.fecha }}</td>
+			<td>{{ mictl.turno }}</td>
+			<td>{{ mictl.operador }}</td>
+			<td>{{ mictl.total_cuenta }}</td>
+			<td>{{ mictl.total_entrega }}</td>
+			<td>{{ mictl.diferencia }}</td>
+			<td>
+				{% if mictl.cerrado %}
+					<a class="btn btn-success" style="width:70%" href="{% url 'control:ctldet' mictl.id %}">Ver</a> 
+				{% else %}
+					<a class="btn btn-primary" style="width:70%" href="{% url 'control:ctledt' mictl.id %}">Editar</a>
+				{% endif %}
+			</td>
+		</tr>
+		{%		endfor %}
+		{%	else %}
+		<tr>
+			<td colspan="8">NO HAY REGISTROS DE CONTROLES DE TURNOS</td>
+		</tr>
+		{%	endif %}
+	</tbody>
+</table>
+{% endblock %}

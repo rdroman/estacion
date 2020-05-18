@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	¿Desea eliminar el registro del Control Turno ID: {{object.id}}, correspondiente a la fecha {{object.fecha}}, turno {{object.turno}} y operador {{ object.operador.nombre }} ?
+	<button class="btn btn-danger" type="submit">Sí, eliminar.</button>
+	<a class="btn btn-default" href="{% url 'control:ctllst' %}">Cancelar</a>
+</form>
+{% endblock %}

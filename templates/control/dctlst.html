@@ -1,0 +1,79 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3>Descuentos para el producto --- <b><input type="hidden" id="lblidproducto" name="lblidproducto" value="{{mi_prod.id}}"></label>{{mi_prod.descripcion}}</b></h3>
+	
+	<br>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Despacho ID:</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtiddespacho" name="txtiddespacho" value="{{iddespacho}}" readonly="readonly">
+			</div>
+		</div>
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Agregar un Descuento">
+			</div>
+		</div>
+	</div>
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		<thead>
+			<tr>
+				<td>ID Descuento</td>
+				<td>ID Despacho</td>
+				<td>Cliente</td>
+				<td>Producto</td>
+				<td>Cantidad</td>
+				<td>Pre.Dscto</td>
+				<td>Monto</td>
+				<td>Acciones</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+			{%	if midescuentos_despacho %}
+			{%		for midscto in midescuentos_despacho %}
+			<tr>
+				<td>{{ midscto.id }}</td>
+				<td>{{ midscto.despacho.id }}</td>
+				<td>{{ midscto.cliente }}</td>
+				<td>{{ midscto.producto.descripcion }}</td>
+				<td>{{ midscto.cantidad }}</td>
+				<td>{{ midscto.precio_dscto }}</td>
+				<td>{{ midscto.monto_dscto }}</td>
+				<td>
+					<a class="btn btn-danger" href="{% url 'control:dctdel' midscto.id %}">Eliminar</a>
+				</td>
+			</tr>
+			{%		endfor %}
+			{%	else %}
+			<tr><td colspan="9">NO hay registros de DESCUENTOS para este PRODUCTO en este DESPACHO</td></tr>
+			{%	endif %}
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li class="page-item">
+				{% if page_obj.has_previous %}
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if page_obj.has_next %}
+				<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+	<a class="btn btn-warning" href="{% url 'control:dspedt' iddespacho %}">Volver a Despacho</a>
+</form>
+{% endblock %}

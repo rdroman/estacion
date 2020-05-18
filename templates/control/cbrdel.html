@@ -1,0 +1,81 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<br>
+	<div class="row">
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<label>Se eliminará la siguiente <b>Cobranza</b>:</label>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input type="hidden" name="hdnfrmcbr_idturno" id="hdnfrmcbr_idturno" value="{{ objcobranza.turno.id }}">
+				<label class="form-control" style="box-shadow: none; border: 0">Cobranza ID</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmcbr_cbrid" name="txtfrmcbr_cbrid" readonly="readonly" value="{{ objcobranza.id }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Credito ID</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmcbr_credid" name="txtfrmcbr_credid" readonly="readonly" value="{{ objcobranza.credito.id }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Cliente</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-6">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmcbr_cliente" name="txtfrmcbr_cliente" readonly="readonly" value="{{ objcobranza.credito.cliente }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Monto Cobranza</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmcbr_montocbr" name="txtfrmcbr_montocbr" readonly="readonly" value="{{ objcobranza.monto_cobro }}">
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-3 col-md-3">
+			<div class="form-group">
+				<label>¿Desea eliminar el registro?</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<button class="btn btn-danger" type="submit">Sí, eliminar.</button>
+				<a class="btn btn-default" href="{% url 'control:cbrlst' objcobranza.turno.id %}">Cancelar</a>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

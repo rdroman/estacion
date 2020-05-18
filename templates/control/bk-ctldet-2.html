@@ -1,0 +1,226 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3>Información de Turno N° <b>{{pkturno}}</b></h3>
+	
+	<br>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Operador:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-4">
+			<div class="form-group">
+				<label>{{miobjTurno.operador}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Cuenta:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>{{miobjTurno.total_cuenta}}</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Turno:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>{{miobjTurno.turno}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1 col-md-offset-2">
+			<div class="form-group">
+				<label>Entrega:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>{{miobjTurno.total_entrega}}</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Fecha:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>{{miobjTurno.fecha}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1 col-md-offset-2">
+			<div class="form-group">
+				<label>Diferencia:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>{{miobjTurno.diferencia}}</label>
+			</div>
+		</div>
+	</div>
+	{% if misDespTurno %}
+	<b><h4>VENTA POR GALONES / SOLES:</h4></b>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Desp.ID</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>Producto</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Despch.</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Normal</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Dsctos</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Credits</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>Devol.</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1 col-md-offset-1">
+			<div class="form-group">
+				<label>S/. Norm</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>S/. Dcto</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>S/. Cred</label>
+			</div>
+		</div>
+	</div>
+	{% for midesp in misDespTurno %}
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.id}}</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label>{{midesp.producto.descripcion}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.gal_despachados}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.gal_normal}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.gal_descuento}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.gal_credito}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.gal_devueltos}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1 col-md-offset-1">
+			<div class="form-group">
+				<label>{{midesp.vta_normal}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.vta_descuento}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{midesp.vta_credito}}</label>
+			</div>
+		</div>
+	</div>
+	{% endfor %}
+	{% endif %}
+	<b><h4>OTRA INFORMACIÓN:</h4></b>
+	<div class="row">
+		<div class="col-1 col-md-1 col-md-offset-2">
+			<div class="form-group">
+				<label>Gastos:</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{miobjTurno.impte_tot_gasto}}</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-1 col-md-1 col-md-offset-2">
+			<div class="form-group">
+				<label>Cobranzas:</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label>{{miobjTurno.impte_tot_cobranza}}</label>
+			</div>
+		</div>
+	</div>
+
+
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a class="btn btn-success" style="width: 100%;" href="#">Imprimir</a>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a class="btn btn-danger" style="width: 100%;" href="{% url 'control:ctllst' %}">Regresar</a>
+			</div>
+		</div>
+	</div>
+	
+</form>
+{% endblock %}

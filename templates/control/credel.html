@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<br>
+	<div class="row">
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<label>Se eliminará el siguiente <b>Crédito</b>:</label>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Crédito ID</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input type="hidden" id="txtfrmcred_despachoid" name="txtfrmcred_despachoid" value="{{ objcredito.despacho.id }}">
+				<input class="form-control" type="text" id="txtfrmcred_credid" name="txtfrmcred_credid" readonly="readonly" value="{{ objcredito.id }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Producto</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input type="hidden" id="txtfrmcred_productoid" name="txtfrmcred_productoid" value="{{ objcredito.producto.id }}">
+				<input class="form-control" type="text" id="txtfrmcred_producto" name="txtfrmcred_producto" readonly="readonly" value="{{ objcredito.producto.descripcion }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Cliente</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input type="hidden" id="txtfrmcred_clienteid" name="txtfrmcred_clienteid" value="{{ objcredito.cliente.id }}">
+				<input class="form-control" type="text" id="txtfrmcred_cliente" name="txtfrmcred_cliente" readonly="readonly" value="{{ objcredito.cliente.razonsocial }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Galones Crédito</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmcred_cantcred" name="txtfrmcred_cantcred" readonly="readonly" value="{{ objcredito.cantidad }}">
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0">Monto Crédito</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtfrmcred_monto" name="txtfrmcred_monto" readonly="readonly" value="{{ objcredito.monto_cred }}">
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="row">
+		<div class="col-3 col-md-3">
+			<div class="form-group">
+				<label>¿Desea eliminar el registro?</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<button class="btn btn-danger" type="submit">Sí, eliminar.</button>
+				<a class="btn btn-default" href="{% url 'control:crelst' objcredito.despacho.id objcredito.producto.id  %}">Cancelar</a>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

@@ -1,0 +1,78 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<input type="hidden" name="hdncred_pkdespacho" id="hdncred_pkdespacho" value="{{iddespacho}}">
+	<input type="hidden" name="hdncred_pkproducto" id="hdncred_pkproducto" value="{{idproducto}}">
+	<h4><b>Crédito</b></h4>
+	<hr>
+	<div class="container">
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Seleccione Cliente</label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					<select class="form-control" name="selclientecred" id="selclientecred">
+						<option value="-">- Seleccione -</option>
+						{% if misclientes %}
+							{% for xcli in misclientes %}
+							<option value="{{ xcli.id }}" {% if xcli == current_xcli %} selected="selected" {% endif %}>{{ xcli.razonsocial }}</option>
+							{% endfor %}
+						{% else %}
+							<option value="-">No hay clientes registrados</option>
+						{% endif %}
+					</select>
+					{{form.cliente}} <!-- txt hidden almacena el ID del cliente seleccionado .js -->
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Ingrese Cantidad</label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					{{ form.cantidad }}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Ingrese Pre.Cred. </label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					{{ form.precio_cred }}
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-2 col-md-2">
+				<div class="form-group">
+					<label class="form-control" style="box-shadow: none; border: 0">Monto Crédito</label>
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					{{ form.monto_cred }}
+					{{ form.monto_cobr }}
+				</div>
+			</div>
+			<div class="col-3 col-md-3">
+				<div class="form-group">
+					<input class="btn btn-primary" type="submit" value="Guardar">
+					<a class="btn btn-danger" href="{% url 'control:crelst' iddespacho idproducto %}">Regresar</a>
+				</div>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

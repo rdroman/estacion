@@ -1,0 +1,93 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Control ID:</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" name="controlpk" value="{{controlpk}}" readonly="readonly">
+			</div>
+		</div>
+		
+	</div>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Elija producto para: </label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<select class="form-control" name="selprodnm" id="selprodid">
+					{% for pro in mis_prods %}
+					<option value="{{pro.id}}" {% if pro == current_pro %} selected="selected" {% endif %}>{{pro.descripcion}}</option>
+					{% endfor %}
+				</select>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Crear Despacho">
+				
+			</div>
+		</div>
+	</div>
+
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		<thead>
+			<tr>
+				<td>ID Control</td>
+				<td>ID Despacho</td>
+				<td>Producto</td>
+				<td>Lectura A</td>
+				<td>Lectura B</td>
+				<td>Gln.Despach.</td>
+				<td>Acciones</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+			{%	if midespacho_turno %}
+			{%		for midsp in midespacho_turno %}
+			<tr>
+				<td>{{ midsp.turno.id }}</td>
+				<td>{{ midsp.id }}</td>
+				<td>{{ midsp.producto.descripcion }}</td>
+				<td>{{ midsp.lectura_lado_a }}</td>
+				<td>{{ midsp.lectura_lado_b }}</td>
+				<td>{{ midsp.gal_despachados }}</td>
+				<td>
+					<a class="btn btn-primary" href="{% url 'control:dspedt' midsp.id %}">Editar</a>
+					<!--<a class="btn btn-danger" href="{% url 'control:dspdel' midsp.id %}">Eliminar</a>-->
+				</td>
+			</tr>
+			{%		endfor %}
+			{%	else %}
+			<tr><td colspan="7">NO HAY REGISTROS DE DESPACHOS PARA EL CONTROL ID</td></tr>
+			{%	endif %}
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li class="page-item">
+				{% if page_obj.has_previous %}
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if page_obj.has_next %}
+				<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+	<a class="btn btn-warning" href="{% url 'control:ctledt' controlpk %}">Volver al Turno</a>
+</form>
+{% endblock %}

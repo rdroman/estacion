@@ -1,0 +1,102 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3>Información de Turno N° <b>{{pkturno}}</b></h3>
+	
+	<br>
+	<table class="table">
+		<tr>
+			<td class="col-1 col-md-1"><b>Operador:</b></td>
+			<td class="col-2 col-md-2">{{miobjTurno.operador}}</td>
+			<td class="col-1 col-md-1">&nbsp;</td>
+			<td class="col-1 col-md-1"><b>Cuenta:</b></td>
+			<td class="col-1 col-md-1">{{miobjTurno.total_cuenta}}</td>
+		</tr>
+		<tr>
+			<td class="col-1 col-md-1"><b>Turno:</b></td>
+			<td class="col-2 col-md-2">{{miobjTurno.turno}}</td>
+			<td class="col-1 col-md-1">&nbsp;</td>
+			<td class="col-1 col-md-1"><b>Entrega:</b></td>
+			<td class="col-1 col-md-1">{{miobjTurno.total_entrega}}</td>
+		</tr>
+		<tr>
+			<td class="col-1 col-md-1"><b>Fecha:</b></td>
+			<td class="col-2 col-md-2">{{miobjTurno.fecha}}</td>
+			<td class="col-1 col-md-1">&nbsp;</td>
+			<td class="col-1 col-md-1"><b>Diferencia:</b></td>
+			<td class="col-1 col-md-1">{{miobjTurno.diferencia}}</td>
+		</tr>
+	</table>
+	<br>
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		{% if misDespTurno %}
+		<thead>
+			<tr>
+				<td>Desp.</td>
+				<td>Producto</td>
+				<td>Despch</td>
+				<td>Normal</td>
+				<td>Dscto.</td>
+				<td>Credit</td>
+				<td>Devol.</td>
+				<td style="border: 0;">&nbsp;</td>
+				<td>S/ Norm</td>
+				<td>S/ Dcto</td>
+				<td>S/ Cred</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+		{%		for midesp in misDespTurno %}
+			<tr>
+				<td>{{ midesp.id }}</td>
+				<td>{{ midesp.producto.descripcion }}</td>
+				<td>{{ midesp.gal_despachados }}</td>
+				<td>{{ midesp.gal_normal }}</td>
+				<td>{{ midesp.gal_descuento }}</td>
+				<td>{{ midesp.gal_credito }}</td>
+				<td>{{ midesp.gal_devueltos }}</td>
+				<td style="border: 0;">&nbsp;</td>
+				<td>{{ midesp.vta_normal }}</td>
+				<td>{{ midesp.vta_descuento }}</td>
+				<td>{{ midesp.vta_credito }}</td>
+				
+			</tr>
+		{%		endfor %}
+		{%	else %}
+		<tr><td colspan="10">NO hay registros de DESPACHOS</td></tr>
+		{%	endif %}
+		</tbody>
+	</table>
+	<br>
+	
+	<table class="table table-bordered table-condensed" style="width: 50%;">
+		<tr>
+			<td colspan="3"><b><h4>OTRA INFORMACIÓN:</h4></b></td>
+		</tr>
+		<tr>
+			<td class="col-1 col-md-1">&nbsp;</td>
+			<td class="col-1 col-md-1"><b>Gastos:</b></td>
+			<td class="col-1 col-md-1">{{miobjTurno.impte_tot_gasto}}</td>
+		</tr>
+		<tr>
+			<td class="col-1 col-md-1">&nbsp;</td>
+			<td class="col-1 col-md-1"><b>Cobranzas:</b></td>
+			<td class="col-1 col-md-1">{{miobjTurno.impte_tot_cobranza}}</td>
+		</tr>
+	</table>
+
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a class="btn btn-danger ocultar-al-imprimir" style="width: 100%;" href="{% url 'control:ctllst' %}">Regresar</a>
+			</div>
+		</div>
+	</div>
+	
+</form>
+{% endblock %}

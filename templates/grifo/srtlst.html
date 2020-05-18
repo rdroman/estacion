@@ -1,0 +1,37 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<table class="table table-bordered">
+	<!-- CABECERA DE LA TABLA -->
+	<thead>
+		<tr>
+			<td>id</td>
+			<td>Descripcion</td>
+			<td>Producto</td>
+			<td>Lado A</td>
+			<td>Lado B</td>
+			<td>Acciones</td>
+		</tr>
+	</thead>
+	<!-- CUERPO DE LA TABLA -->
+	<tbody>
+		{%	if object_list %}
+		{%		for misur in object_list %}
+		<tr>
+			<td>{{ misur.id }}</td>
+			<td>{{ misur.descripcion }}</td>
+			<td>{{ misur.producto.descripcion }}</td>
+			<td>{{ misur.lado_a }}</td>
+			<td>{{ misur.lado_b }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'grifo:srtedt' misur.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'grifo:srtdel' misur.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{%		endfor %}
+		{%	else %}
+		<h4> NO HAY REGISTROS DE SURTIDORES</h4>
+		{%	endif %}
+	</tbody>
+</table>
+{% endblock %}

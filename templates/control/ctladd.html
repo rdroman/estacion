@@ -1,0 +1,95 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post" id="myfrmturno">
+	{% csrf_token %}
+	<div class="row"> 
+		<div class="col-6 col-md-4">
+			<div class="form-group">
+				<label><h4><b>Control de Turno</b></h4></label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6 col-md-4">
+			<div class="form-group">
+				<label>Fecha: </label>{{ form.fecha }}
+			</div>
+			<div class="form-group">
+				<label>Turno: </label>{{ form.turno }}
+			</div>
+			<div class="form-group">
+				<label>Operador: </label>{{ form.operador }}
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group">
+				<label>Vta normal: </label>{{ form.impte_vta_normal }}
+			</div>
+			<div class="form-group">
+				<label>Descuentos: </label>{{ form.impte_vta_dscto }}
+			</div>
+			<div class="form-group">
+				<label>Cobranzas: </label>{{ form.impte_tot_cobranza }}
+			</div>
+			<div class="form-group">
+				<label>Gastos: </label>{{ form.impte_tot_gasto }}
+			</div>
+		</div>
+		<div class="col-6 col-md-4">
+			<div class="form-group">
+				<label>Total Cuenta: </label>{{ form.total_cuenta }}
+			</div>
+			<div class="form-group">
+				<label>Total Entrega: </label>{{ form.total_entrega }}
+			</div>
+			<div class="form-group">
+				<label>Diferencia: </label>{{ form.diferencia }}
+			</div>
+			{{form.cerrado}}
+		</div>
+	</div>
+	<br />
+	<div class="row">
+		{% if pkturno != null %}
+		<div class="col-md-2">
+			<div class="form-group">
+				<button type="button" class="btn btn-primary" style="width: 100%" id="btnfrmtur_cierratur" name="btnfrmtur_cierratur">Cerrar Turno</button>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<button type="button" class="btn btn-info" style="width: 100%" id="btnfrmtur_calc_cta" name="btnfrmtur_calc_cta">Calcular Cuenta</button>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:dsplst' pkturno %}" class="btn btn-success" style="width: 100%">Ir a Despachos</a>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:cbrlst' pkturno %}" class="btn btn-warning" style="width: 100%">Ir a Cobranzas</a>
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:gtolst' pkturno %}" class="btn btn-warning" style="width: 100%">Ir a Gastos</a>
+			</div>
+		</div>
+		{% else %}
+		<div class="col-md-2">
+			<div class="form-group">
+				<button class="btn btn-primary" style="width: 100%" type="submit">Crear</button>
+			</div>
+		</div>
+		{% endif %}
+		<div class="col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:ctllst' %}" class="btn btn-danger" style="width: 100%">Volver a Listado</a>
+			</div>
+		</div>
+	</div>
+	<!--{{ form2.as_p }}-->
+</form>
+{% endblock %}

@@ -1,0 +1,218 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	<h4>
+		<label for="txtIDControl">Código de Control de Turno: </label>&nbsp;&nbsp;&nbsp;
+		<label id="txtpkcontrol" name="txtpkcontrol">{{idcontrol}}</label>
+	</h4>
+	<h3>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="form-group text-center">
+					<label>Despacho de Producto: </label> {{miproducto.descripcion}}
+				</div>
+			</div>
+		</div>
+	</h3>
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<label for="txtProdID">Codigo</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<label for="txtDescripcion">Combustible</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<label for="txtLadoA">Lect.Anterior A</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<label for="txtLadoB">Lect.Anterior B</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<label for="txtLadoA">Lect.Actual A</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<label for="txtLadoB">Lect.Actual B</label>
+			</div>
+		</div>
+	</div>
+
+
+
+	<div class="row">
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" readonly="readonly" name="txtProdID" id="txtProdID" value="{{ miproducto.id }}">
+				<input class="form-control" type="hidden" readonly="readonly" name="txtfrmdesp_preprod" id="txtfrmdesp_preprod" value="{{ miproducto.precio_venta }}">
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" readonly="readonly" name="txtDescripcion" id="txtDescripcion" value="{{ miproducto.descripcion }}">
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" readonly="readonly" name="txtLadoA" id="txtLadoA" value="{{ miproducto.lado_a }}">
+			</div>
+		</div>
+		<div class="col-6 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" readonly="readonly" name="txtLadoB" id="txtLadoB" value="{{ miproducto.lado_b }}">
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">{{ form.lectura_lado_a }}
+			</div>
+		</div>
+		<div class="col-md-2">
+			<div class="form-group">{{ form.lectura_lado_b }}
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">
+					{{form.turno}} <!--hiddeninput-->
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					{{form.producto }} <!--hiddeninput-->
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Galones Despachados</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Galones Precio Normal</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Galones Descuento</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Galones Crédito</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Galones Devueltos Tqe</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">{{ form.gal_despachados }}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">{{ form.gal_normal }}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">{{ form.gal_descuento }}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">{{ form.gal_credito }}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">{{ form.gal_devueltos }}
+				</div>
+			</div>
+		</div>
+		<br>
+		<div class="row">
+			<div class="col-md-2 col-md-offset-2">
+				<div class="form-group">
+					<label>Venta Normal</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Venta Descuento</label>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<label>Venta Credito</label>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-2 col-md-offset-2">
+				<div class="form-group">{{ form.vta_normal }}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">{{ form.vta_descuento }}
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">{{ form.vta_credito }}
+				</div>
+			</div>
+		</div>
+		
+		<div class="row">
+			<div class="col-md-2">
+				<div class="form-group">
+					<input type="submit" class="btn btn-primary" style="width:100%" value="Guardar">
+				</div>
+			</div>
+			{% if iddespacho > '0' %}
+			<div class="col-md-2">
+				<div class="form-group">
+					<button type="button" class="btn btn-info" style="width:100%" id="btndesp_recalc_desp" name="btndesp_recalc_desp">Re-Calcular</button>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<a href="{% url 'control:dctlst' iddespacho idproducto %}" class="btn btn-warning"  style="width:100%">Ir a Descuentos</a>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<a href="{% url 'control:crelst' iddespacho idproducto %}" class="btn btn-warning"  style="width:100%">Ir a Créditos</a>
+				</div>
+			</div>
+			<div class="col-md-2">
+				<div class="form-group">
+					<a href="{% url 'control:devlst' iddespacho idproducto %}" class="btn btn-warning" style="width:100%">Devoluciones Tanque</a>
+				</div>
+			</div>
+			{% endif %}
+			<div class="col-md-2">
+				<div class="form-group">
+					<a href="{% url 'control:dsplst' idcontrol %}" class="btn btn-danger" style="width:100%">Volver</a>
+				</div>
+			</div>
+		</div>
+		
+	</div>
+</form>
+{% endblock %}

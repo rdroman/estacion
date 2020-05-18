@@ -1,0 +1,83 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3>Créditos para el producto --- <b><input type="hidden" id="lblidproducto" name="lblidproducto" value="{{mi_prod.id}}"></label>{{mi_prod.descripcion}}</b></h3>
+	
+	<br>
+	<div class="row">
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Despacho ID:</label>
+			</div>
+		</div>
+		<div class="col-4 col-md-2">
+			<div class="form-group">
+				<input class="form-control" type="text" id="txtiddespacho" name="txtiddespacho" value="{{iddespacho}}" readonly="readonly">
+			</div>
+		</div>
+		<div class="col-4 col-md-4">
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" value="Agregar un Crédito">
+			</div>
+		</div>
+	</div>
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		<thead>
+			<tr>
+				<td>ID Crédito</td>
+				<td>ID Despacho</td>
+				<td>Cliente</td>
+				<td>Producto</td>
+				<td>Cantidad</td>
+				<td>Pre.Cred.</td>
+				<td>Monto Cred.</td>
+				<td>Monto Cobr.</td>
+				<td>Cobrado?</td>
+				<td>Acciones</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+			{%	if micreditos_despacho %}
+			{%		for micred in micreditos_despacho %}
+			<tr>
+				<td>{{ micred.id }}</td>
+				<td>{{ micred.despacho.id }}</td>
+				<td>{{ micred.cliente.razonsocial }}</td>
+				<td>{{ micred.producto.descripcion }}</td>
+				<td>{{ micred.cantidad }}</td>
+				<td>{{ micred.precio_cred }}</td>
+				<td>{{ micred.monto_cred }}</td>
+				<td>{{ micred.monto_cobr }}</td>
+				<td>{{ micred.cobrado }}</td>
+				<td>
+					<a class="btn btn-danger" href="{% url 'control:credel' micred.id %}">Eliminar</a>
+				</td>
+			</tr>
+			{%		endfor %}
+			{%	else %}
+			<tr><td colspan="10">NO hay CREDITOS para este PRODUCTO en este DESPACHO</td></tr>
+			{%	endif %}
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li class="page-item">
+				{% if page_obj.has_previous %}
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if page_obj.has_next %}
+				<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+	<a class="btn btn-warning" href="{% url 'control:dspedt' iddespacho %}">Volver a Despacho</a>
+</form>
+{% endblock %}

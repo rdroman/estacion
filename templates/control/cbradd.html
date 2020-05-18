@@ -1,0 +1,57 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h4>Cobranzas del Turno: <b><input style="box-shadow: none; border: 0;" type="text" id="txtidturno_cbr" name="txtidturno_cbr" value="{{pkturno}}"></b></h4>
+	
+	{{form.turno }} <!--hiddeninput-->
+	{{form.credito }} <!--hiddeninput-->
+	<hr>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0;">Seleccione Crédito</label>
+			</div>
+		</div>
+		<div class="col-6 col-md-6">
+			<div class="form-group">
+				<select class="form-control" id="selfrmcbr_cred" name="selfrmcbr_cred">
+					{% if miscreditos %}
+						<option value="0">- Seleccionar -</option>
+						{% for cred in miscreditos %}
+							<option value="{{cred.id}}">{{cred.cliente.razonsocial}} --- debe --- (S/  {{cred.monto_cred}})</option>
+						{% endfor %}
+					{% else %}
+						<option value="0">- No hay créditos pendientes -</option>
+					{% endif %}
+				</select>
+				
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0;">Monto Cobro</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				{{form.monto_cobro}}
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" style="width: 100%;" value="Guardar">
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:cbrlst' pkturno %}" class="btn btn-danger" style="width: 100%">Regresar</a>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}

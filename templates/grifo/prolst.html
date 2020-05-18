@@ -1,0 +1,43 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<table class="table table-bordered">
+	<!-- CABECERA DE LA TABLA -->
+	<thead>
+		<tr>
+			<td>id</td>
+			<td>Descripcion</td>
+			<td>Lado A</td>
+			<td>Lado B</td>
+			<td>Stock</td>
+			<td>Precio</td>
+			<td>Fec.Registro</td>
+			<td>Acciones</td>
+		</tr>
+	</thead>
+	<!-- CUERPO DE LA TABLA -->
+	<tbody>
+		{%	if object_list %}
+		{%		for mipro in object_list %}
+		<tr>
+			<td>{{ mipro.id }}</td>
+			<td>{{ mipro.descripcion }}</td>
+			<td>{{ mipro.lado_a }}</td>
+			<td>{{ mipro.lado_b }}</td>
+			<td>{{ mipro.stock }}</td>
+			<td>{{ mipro.precio_venta }}</td>
+			<td>{{ mipro.fecha_registro }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'grifo:proedt' mipro.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'grifo:prodel' mipro.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{%		endfor %}
+		{%	else %}
+		<tr> 
+			<td colspan="8">NO HAY REGISTROS DE PRODUCTOS</td>
+		</tr>
+		{%	endif %}
+	</tbody>
+</table>
+{% endblock %}

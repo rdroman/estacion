@@ -1,0 +1,123 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3>Información de Turno N° <b>{{pkturno}}</b></h3>
+	
+	<br>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Operador:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-4">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">{{miobjTurno.operador}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Cuenta:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">{{miobjTurno.total_cuenta}}</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Turno:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">{{miobjTurno.turno}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1 col-md-offset-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Entrega:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">{{miobjTurno.total_entrega}}</label>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-1 col-md-1">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Fecha:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">{{miobjTurno.fecha}}</label>
+			</div>
+		</div>
+		<div class="col-1 col-md-1 col-md-offset-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">Diferencia:</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0 ">{{miobjTurno.diferencia}}</label>
+			</div>
+		</div>
+	</div>
+	<b>Venta por Galones:</b>
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		<thead>
+			<tr>
+				<td>ID Despacho</td>
+				<td>Producto</td>
+				<td>Despch</td>
+				<td>Normal</td>
+				<td>Dscto.</td>
+				<td>Credit</td>
+				<td>Devol.</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+			{%	if misDespTurno %}
+			{%		for midesp in misDespTurno %}
+			<tr>
+				<td>{{ midesp.id }}</td>
+				<td>{{ midesp.producto.descripcion }}</td>
+				<td>{{ midesp.gal_despachados }}</td>
+				<td>{{ midesp.gal_normal }}</td>
+				<td>{{ midesp.gal_descuento }}</td>
+				<td>{{ midesp.gal_credito }}</td>
+				<td>{{ midesp.gal_devueltos }}</td>
+			</tr>
+			{%		endfor %}
+			{%	else %}
+			<tr><td colspan="7">NO hay registros de DESPACHOS</td></tr>
+			{%	endif %}
+		</tbody>
+	</table>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a class="btn btn-success" style="width: 100%;" href="#">Imprimir</a>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a class="btn btn-danger" style="width: 100%;" href="{% url 'control:ctllst' %}">Regresar</a>
+			</div>
+		</div>
+	</div>
+	
+</form>
+{% endblock %}

@@ -1,0 +1,45 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h4>Gastos del Turno: <b><input style="box-shadow: none; border: 0;" type="text" id="txtidturno_gto" name="txtidturno_gto" value="{{pkturno}}"></b></h4>
+	<hr>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0;">Descripcion Gasto</label>
+				{{form.turno}} <!--hiddeninput-->
+			</div>
+		</div>
+		<div class="col-6 col-md-6">
+			<div class="form-group">
+				{{form.descripcion}}
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<label class="form-control" style="box-shadow: none; border: 0;">Monto Gasto</label>
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				{{form.monto}}
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<input type="submit" class="btn btn-primary" style="width: 100%;" value="Guardar">
+			</div>
+		</div>
+		<div class="col-2 col-md-2">
+			<div class="form-group">
+				<a href="{% url 'control:gtolst' pkturno %}" class="btn btn-danger" style="width: 100%">Regresar</a>
+			</div>
+		</div>
+	</div>
+</form>
+{% endblock %}
