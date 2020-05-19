@@ -16,8 +16,6 @@ from django.core.urlresolvers import reverse_lazy
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
-PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
-
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.9/howto/deployment/checklist/
 
@@ -59,7 +57,7 @@ MIDDLEWARE_CLASSES = [
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',  # Esta es una linea para Produccion (Robert)
+    'whitenoise.middleware.WhiteNoiseMiddleware',
 ]
 
 ROOT_URLCONF = 'estacion.urls'
@@ -130,18 +128,14 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-# Esta es una Variable para Produccion (Robert)
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles') 
-#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') 
-#Error:#STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
-
 STATIC_URL = '/static/'
 
-#RobertERROR#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),'/static/',)
-#STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
-STATICFILES_DIRS = [os.path.join(PROJECT_ROOT, 'static'), ]
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-#RobertPRUEBA#STATICFILES_STORAGES = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+# Extra places for collectstatic to find static files.
+STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'), )
+
+#RobertPRUEBA#STATICFILES_STORAGESdjango.contrib.staticfiles.storage.ManifestStaticFilesStorage
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Para redireccionar al listado cuando se inicie sesion
