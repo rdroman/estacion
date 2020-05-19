@@ -83,6 +83,19 @@ WSGI_APPLICATION = 'estacion.wsgi.application'
 
 
 # Database
+# https://docs.djangoproject.com/en/1.9/ref/settings/#databases
+
+#Variable para Test (Robert):
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'BDAbiSoft',
+#         'USER': 'postgres',
+#         'PASSWORD': 'Valeska26',
+#         'HOST': 'localhost',
+#         'PORT': 5432
+#     }
+# }
 #Variable para Produccion (Robert):
 import dj_database_url
 from decouple import config
