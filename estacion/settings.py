@@ -129,13 +129,16 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.9/howto/static-files/
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Esta es una Variable para Produccion (Robert)
+#RobertERROR#STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') # Esta es una Variable para Produccion (Robert)
+STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), 'static')
 
 STATIC_URL = '/static/'
 
-STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),'/static/',)
+#RobertERROR#STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),'/static/',)
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static'), ]
 
-STATICFILES_STORAGES = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+#RobertPRUEBA#STATICFILES_STORAGES = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Para redireccionar al listado cuando se inicie sesion
 LOGIN_REDIRECT_URL = reverse_lazy('control:ctllst')
