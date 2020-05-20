@@ -136,7 +136,7 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = ( os.path.join(BASE_DIR, 'static'), )
 
 #RobertPRUEBA#STATICFILES_STORAGESdjango.contrib.staticfiles.storage.ManifestStaticFilesStorage
-STATICFILES_STORAGE = 'whitenoise.storage.GzipManifestStaticFilesStorage'
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 #Para redireccionar al listado cuando se inicie sesion
 LOGIN_REDIRECT_URL = reverse_lazy('control:ctllst')
