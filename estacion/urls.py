@@ -45,4 +45,4 @@ urlpatterns = [
     url(r'^reset/done', 
         password_reset_complete, {'template_name' : 'recuperacion/password_reset_complete.html'}, 
         name="password_reset_complete"),
-] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT) # Esta es una linea para Produccion (Robert)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
