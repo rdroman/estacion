@@ -1,0 +1,47 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<table class="table table-bordered">
+	<!-- CABECERA DE LA TABLA -->
+	<thead>
+		<tr>
+			<td>id</td>
+			<td>RUC / DNI</td>
+			<td>Razon Social</td>
+			<td>Acciones</td>
+		</tr>
+	</thead>
+	<!-- CUERPO DE LA TABLA -->
+	<tbody>
+		{%	if object_list %}
+		{%		for micli in object_list %}
+		<tr>
+			<td>{{ micli.id }}</td>
+			<td>{{ micli.ruc }}</td>
+			<td>{{ micli.razonsocial }}</td>
+			<td>
+				<a class="btn btn-primary" href="{% url 'grifo:cliedt' micli.id %}">Editar</a>
+				<a class="btn btn-danger" href="{% url 'grifo:clidel' micli.id %}">Eliminar</a>
+			</td>
+		</tr>
+		{%		endfor %}
+		{%	else %}
+		<h4> NO HAY REGISTROS DE CLIENTES</h4>
+		{%	endif %}
+	</tbody>
+</table>
+<nav aria-label="Page navigation">
+  <ul class="pagination">
+    <li class="page-item">
+    	{% if page_obj.has_previous %}
+    	<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+    	{% endif %}
+    </li>
+    <li class="page-item">
+    	{% if page_obj.has_next %}
+    	<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+    	{% endif %}
+    </li>
+  </ul>
+</nav>
+{% endblock %}

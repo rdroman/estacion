@@ -1,0 +1,10 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	¿Desea eliminar el registro de {{ object.razonsocial }} ?
+	<button class="btn btn-danger" type="submit">Sí, eliminar.</button>
+	<a class="btn btn-default" href="{% url 'grifo:clilst' %}">Cancelar</a>
+</form>
+{% endblock %}

@@ -1,5 +1,5 @@
 from django import forms
-from apps.grifo.models import Producto, Operador #, Surtidor
+from apps.grifo.models import Producto, Operador, Cliente #, Surtidor
 
 class OperadorForm(forms.ModelForm):
 	class Meta:
@@ -50,6 +50,23 @@ class ProductoForm(forms.ModelForm):
 		}
 
 
+
+class ClienteForm(forms.ModelForm):
+	class Meta:
+		model = Cliente
+
+		fields = [
+			'ruc',
+			'razonsocial'
+		]
+		labels = {
+			'ruc' : 'Nro. de RUC',
+			'razonsocial' : 'Razón Social'
+		}
+		widgets = {
+			'ruc':forms.TextInput(attrs={'class':'form-control'}),
+			'razonsocial':forms.TextInput(attrs={'class':'form-control'})
+		}
 
 # class SurtidorForm(forms.ModelForm):
 # 	class Meta:

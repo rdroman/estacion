@@ -2,8 +2,8 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.core.urlresolvers import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from apps.grifo.forms import ProductoForm, OperadorForm #, SurtidorForm
-from apps.grifo.models import Producto, Operador #, Surtidor
+from apps.grifo.forms import ProductoForm, OperadorForm, ClienteForm #, SurtidorForm
+from apps.grifo.models import Producto, Operador, Cliente #, Surtidor
 from django.core import serializers
 
 
@@ -19,7 +19,7 @@ def operadorlistado(request):
 class OperadorList(ListView):
 	model = Operador
 	template_name = 'grifo/opelst.html'
-	paginate_by = 2
+	paginate_by = 4
 
 class OperadorCreate(CreateView):
 	model = Operador
@@ -62,6 +62,30 @@ class ProductoDelete(DeleteView):
 	template_name = 'grifo/prodel.html'
 	success_url = reverse_lazy('grifo:prolst')
 
+
+
+
+class ClienteList(ListView):
+	model = Cliente
+	template_name = 'grifo/clilst.html'
+	paginate_by = 4
+
+class ClienteCreate(CreateView):
+	model = Cliente
+	template_name = 'grifo/cliadd.html'
+	form_class = ClienteForm
+	success_url = reverse_lazy('grifo:clilst')
+
+class ClienteUpdate(UpdateView):
+	model = Cliente
+	template_name = 'grifo/cliadd.html'
+	form_class = ClienteForm
+	success_url = reverse_lazy('grifo:clilst')
+
+class ClienteDelete(DeleteView):
+	model = Cliente
+	template_name = 'grifo/clidel.html'
+	success_url = reverse_lazy('grifo:clilst')
 
 
 # class SurtidorList(ListView):
