@@ -37,12 +37,9 @@
 										<span class="icon-bar"></span>
 										<span class="icon-bar"></span>
 									</button>
-									<a class="navbar-brand" href="#">Brand</a>
+									<a class="navbar-brand" href="{% url 'control:index' %}">Inicio</a>
 								</div>
 								<!-- EndBrand and toggle -->
-		                  		<div class="navbar-header">
-		                    		<a class="navbar-brand" href="{% url 'control:index' %}">Home</a>
-		                  		</div>
 			                  	<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 			                    	<ul class="nav navbar-nav">
 			                      		<li class="dropdown">
@@ -51,12 +48,8 @@
 					                        	<li class="dropdown-submenu">
 													<a href="#" class="misubmenu" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><span class="nav-label">Turno</span><span class="caret"></span></a>
 													<ul class="dropdown-menu" role="menu">
-														<li><a href="{% url 'control:ctladd' %}">Turno</a></li>
-														<li><a href="{% url 'control:ctladd' %}">Despacho</a></li>
-														<li><a href="{% url 'control:ctladd' %}">Descuentos</a></li>
-														<li><a href="{% url 'control:ctladd' %}">Creditos</a></li>
-														<li><a href="{% url 'control:ctladd' %}">Cobranzas</a></li>
-														<li><a href="{% url 'control:ctladd' %}">Gastos</a></li>
+														<li><a href="{% url 'control:ctladd' %}">Crear</a></li>
+														<li><a href="{% url 'control:ctllst' %}">Listar</a></li>
 													</ul>
 												</li>
 												<li><a href="{% url 'control:ctllst' %}">Listar</a></li>
