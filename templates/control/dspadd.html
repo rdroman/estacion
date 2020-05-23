@@ -4,8 +4,8 @@
 <form method="post">
 	{% csrf_token %}
 	<h4>
-		<label for="txtIDControl">Código de Control de Turno: </label>&nbsp;&nbsp;&nbsp;
-		<label id="txtpkcontrol" name="txtpkcontrol">{{idcontrol}}</label>
+		<label for="txtpkcontrol">Código de Control de Turno</label>
+		<input type="text" class="text" readonly="readonly" name="txtpkcontrol" id="txtpkcontrol" value="{{idcontrol}}">
 	</h4>
 	<h3>
 		<div class="row">
