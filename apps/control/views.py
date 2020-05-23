@@ -252,9 +252,12 @@ class DespachoCreate(CreateView):
 		form = self.form_class(request.POST)
 		micontrol = request.POST.get('txtpkcontrol') #Valores enviados por la URL
 		miproducto = request.POST.get('txtProdID') #Valores enviados por la URL
+		print("------------------- recoge los parametros.... micontrol: ", micontrol)
+		print("------------------- recoge los parametros.... miproducto: ", miproducto)
 		form.data['turno'] = micontrol #Cambia el valor del campo 'turno' del form 
 		form.data['producto'] = miproducto #Cambia el valor del campo 'producto' del form 
 		
+		print("------------------- pase")
 		if form.is_valid():
 			tmpvar_despacho = form.save() #Guarda el formulario y asigna el PK a la variable temporal
 
