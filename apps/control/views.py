@@ -171,7 +171,7 @@ class TurnoUpdate(UpdateView):
 		form = self.form_class(request.POST, instance = tmpvar_turno)
 		form.data['cerrado'] = True
 
-		if form.is_valid() and tmpvar_turno.cerrado == False:
+		if form.is_valid():
 			objTurno = form.save()
 			
 			#Actualizamos las lecturas de los Despachos
