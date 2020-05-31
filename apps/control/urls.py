@@ -5,7 +5,8 @@ from apps.control.views import index, TurnoList, TurnoCreate, TurnoUpdate, Turno
                                 CreditoList, CreditoCreate, CreditoDelete, \
                                 DevolucionList, DevolucionCreate, DevolucionDelete, \
                                 GastoList, GastoCreate, GastoDelete, \
-                                CobranzaList, CobranzaCreate, CobranzaDelete
+                                CobranzaList, CobranzaCreate, CobranzaDelete, \
+                                ReporteResumenDiario, ReporteResumenGalones, ReporteGastosDetalle
 from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
@@ -33,6 +34,9 @@ urlpatterns = [
 	url(r'^cobranza_listar/(?P<micontrol>\d+)/$', login_required(CobranzaList.as_view()), name='cbrlst'),
 	url(r'^cobranza_agregar/(?P<micontrol>\d+)/$', login_required(CobranzaCreate.as_view()), name='cbradd'),
 	url(r'^cobranza_eliminar/(?P<pk>\d+)/$', login_required(CobranzaDelete.as_view()), name='cbrdel'),
+	url(r'^rptvtaresumen/$', login_required(ReporteResumenDiario.as_view()), name='rptresvta'),
+	url(r'^rptvtagalones', login_required(ReporteResumenGalones.as_view()), name='rptdspdia'),
+	url(r'^rptgtodetalle', login_required(ReporteGastosDetalle.as_view()), name='rptgtodet'),
 	#url(r'^despacho_crear/(?P<idcontrol>\d+)/$', login_required(DespachoCrear), name='bkdspadd'),
 	#url(r'^despacho_agregar$', login_required(DespachoCreate.as_view()), name='dspadd'),
 	#url(r'^despacho_listar$', login_required(DespachoList.as_view()), name='dsplst'),

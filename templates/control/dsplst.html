@@ -4,12 +4,12 @@
 <form method="post">
 	{% csrf_token %}
 	<div class="row">
-		<div class="col-4 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<label class="form-control" style="box-shadow: none; border: 0 ">Control ID:</label>
 			</div>
 		</div>
-		<div class="col-4 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<input class="form-control" type="text" name="controlpk" value="{{controlpk}}" readonly="readonly">
 			</div>
@@ -17,12 +17,12 @@
 		
 	</div>
 	<div class="row">
-		<div class="col-4 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<label class="form-control" style="box-shadow: none; border: 0 ">Elija producto para: </label>
 			</div>
 		</div>
-		<div class="col-4 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<select class="form-control" name="selprodnm" id="selprodid">
 					{% for pro in mis_prods %}
@@ -31,7 +31,7 @@
 				</select>
 			</div>
 		</div>
-		<div class="col-4 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary" value="Crear Despacho">
 				

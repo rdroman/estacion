@@ -4,14 +4,14 @@
 <form method="post" id="myfrmturno">
 	{% csrf_token %}
 	<div class="row"> 
-		<div class="col-6 col-md-4">
+		<div class="col-4 col-md-4">
 			<div class="form-group">
 				<label><h4><b>Control de Turno</b></h4></label>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-6 col-md-4">
+		<div class="col-4 col-md-4">
 			<div class="form-group">
 				<label>Fecha: </label>{{ form.fecha }}
 			</div>
@@ -22,7 +22,7 @@
 				<label>Operador: </label>{{ form.operador }}
 			</div>
 		</div>
-		<div class="col-6 col-md-4">
+		<div class="col-4 col-md-4">
 			<div class="form-group">
 				<label>Vta normal: </label>{{ form.impte_vta_normal }}
 			</div>
@@ -36,7 +36,7 @@
 				<label>Gastos: </label>{{ form.impte_tot_gasto }}
 			</div>
 		</div>
-		<div class="col-6 col-md-4">
+		<div class="col-4 col-md-4">
 			<div class="form-group">
 				<label>Total Cuenta: </label>{{ form.total_cuenta }}
 			</div>

@@ -5,7 +5,7 @@
 	{% csrf_token %}
 	<br>
 	<div class="row">
-		<div class="col-4 col-md-4">
+		<div class="col-4 col-md-4 col-sm-4">
 			<div class="form-group">
 				<label>Se eliminará el siguiente <b>Gasto</b>:</label>
 			</div>
@@ -13,20 +13,20 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<input type="hidden" name="hdnfrmgto_idturno" id="hdnfrmgto_idturno" value="{{ objgasto.turno.id }}">
 				<label class="form-control" style="box-shadow: none; border: 0">Gasto ID</label>
 			</div>
 		</div>
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<input class="form-control" type="text" id="txtfrmgto_gtoid" name="txtfrmgto_gtoid" readonly="readonly" value="{{ objgasto.id }}">
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<label class="form-control" style="box-shadow: none; border: 0">Producto</label>
 			</div>
@@ -38,12 +38,12 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<label class="form-control" style="box-shadow: none; border: 0">Monto Gasto</label>
 			</div>
 		</div>
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<input class="form-control" type="text" id="txtfrmgto_montogto" name="txtfrmgto_montogto" readonly="readonly" value="{{ objgasto.monto }}">
 			</div>
@@ -51,14 +51,14 @@
 	</div>
 	<br>
 	<div class="row">
-		<div class="col-3 col-md-3">
+		<div class="col-3 col-md-3 col-sm-3">
 			<div class="form-group">
 				<label>¿Desea eliminar el registro?</label>
 			</div>
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-4 col-md-4">
+		<div class="col-4 col-md-4 col-sm-4">
 			<div class="form-group">
 				<button class="btn btn-danger" type="submit">Sí, eliminar.</button>
 				<a class="btn btn-default" href="{% url 'control:gtolst' objgasto.turno.id %}">Cancelar</a>

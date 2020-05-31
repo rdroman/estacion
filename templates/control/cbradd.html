@@ -10,12 +10,12 @@
 	{{form.credito }} <!--hiddeninput-->
 	<hr>
 	<div class="row">
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<label class="form-control" style="box-shadow: none; border: 0;">Seleccione Crédito</label>
 			</div>
 		</div>
-		<div class="col-6 col-md-6">
+		<div class="col-6 col-md-6 col-sm-6">
 			<div class="form-group">
 				<select class="form-control" id="selfrmcbr_cred" name="selfrmcbr_cred">
 					{% if miscreditos %}
@@ -32,22 +32,22 @@
 		</div>
 	</div>
 	<div class="row">
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<label class="form-control" style="box-shadow: none; border: 0;">Monto Cobro</label>
 			</div>
 		</div>
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				{{form.monto_cobro}}
 			</div>
 		</div>
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<input type="submit" class="btn btn-primary" style="width: 100%;" value="Guardar">
 			</div>
 		</div>
-		<div class="col-2 col-md-2">
+		<div class="col-2 col-md-2 col-sm-2">
 			<div class="form-group">
 				<a href="{% url 'control:cbrlst' pkturno %}" class="btn btn-danger" style="width: 100%">Regresar</a>
 			</div>

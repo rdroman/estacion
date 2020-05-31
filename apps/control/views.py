@@ -905,3 +905,35 @@ class CobranzaDelete(DeleteView):
 		objcobranza = self.model.objects.get(id = pkcbr)
 		context['objcobranza'] = objcobranza
 		return context
+
+
+
+class ReporteResumenDiario(ListView):
+	pass
+
+
+
+class ReporteGastosDetalle(ListView):
+	model = Gasto
+	template_name = 'reporte/rptgtodia.html'
+	paginate_by = 10
+
+
+
+from django.db.models import Sum
+
+class ReporteResumenGalones(ListView):
+	model = Despacho
+	template_name = 'reporte/rptvtadia.html'
+
+	def get_context_data(self, **kwargs):
+		context = super(CobranzaDelete, self).get_context_data(**kwargs)
+		milista = self.model.objects.values('controlturno__fecha', 'producto__descripcion').order_by('-controlturno__fecha', 'producto__descripcion').annotate('despachado'=Sum(gal_despachados))
+		context['misdespachos_list'] = milista
+		return context
+
+
+
+
+
+

@@ -18,6 +18,9 @@ class ControlTurno(models.Model):
 	def __str__(self):
 		return str(self.fecha) + ' ' + (self.operador.nombre)
 	
+	class Meta:
+		ordering = ['-fecha']
+
 	# you override the save method and calculate for total_cuenta
 	# def save(self, *args, **kwargs):
 	# 	self.total_cuenta = self.impte_vta_normal * self.impte_vta_dscto + self.impte_tot_cobranza - self.impte_tot_gasto;
@@ -70,6 +73,9 @@ class Gasto(models.Model):
 	fecha_registro = models.DateTimeField(auto_now=True)
 	descripcion = models.CharField(max_length=250, blank=True, null=True)
 	monto = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
+
+	class Meta:
+		ordering = ['-controlturno__fecha']
 
 class Cobranza(models.Model):
 	turno = models.ForeignKey(ControlTurno, on_delete=models.CASCADE)

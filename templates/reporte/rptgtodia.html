@@ -1,0 +1,50 @@
+{% extends 'base/base.html' %}
+
+{% block content %}
+<form method="post">
+	{% csrf_token %}
+	
+	<h3><b>Detalle de Gastos</b></h3>
+	
+	<br>
+	<table class="table table-bordered">
+		<!-- CABECERA DE LA TABLA -->
+		<thead>
+			<tr>
+				<td>Fecha</td>
+				<td>Descripcion</td>
+				<td>Monto</td>
+			</tr>
+		</thead>
+		<!-- CUERPO DE LA TABLA -->
+		<tbody>
+			{%	if object_list %}
+			{%		for itm in object_list %}
+			<tr>
+				<td>{{ itm.turno.fecha }}</td>
+				<td>{{ itm.descripcion }}</td>
+				<td>{{ itm.monto }}</td>
+			</tr>
+			{%		endfor %}
+			{%	else %}
+			<tr><td colspan="3">No hay registros</td></tr>
+			{%	endif %}
+		</tbody>
+	</table>
+	<nav aria-label="Page navigation">
+		<ul class="pagination">
+			<li class="page-item">
+				{% if page_obj.has_previous %}
+				<a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+				{% endif %}
+			</li>
+			<li class="page-item">
+				{% if page_obj.has_next %}
+				<a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+				{% endif %}
+			</li>
+		</ul>
+	</nav>
+	<a class="btn btn-warning" href="{% url 'control:index' %}">A Principal</a>
+</form>
+{% endblock %}

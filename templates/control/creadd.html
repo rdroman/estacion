@@ -9,12 +9,12 @@
 	<hr>
 	<div class="container">
 		<div class="row">
-			<div class="col-2 col-md-2">
+			<div class="col-2 col-md-2 col-sm-2">
 				<div class="form-group">
 					<label class="form-control" style="box-shadow: none; border: 0">Seleccione Cliente</label>
 				</div>
 			</div>
-			<div class="col-3 col-md-3">
+			<div class="col-3 col-md-3 col-sm-3">
 				<div class="form-group">
 					<select class="form-control" name="selclientecred" id="selclientecred">
 						<option value="-">- Seleccione -</option>
@@ -31,42 +31,42 @@
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2 col-md-2">
+			<div class="col-2 col-md-2 col-sm-2">
 				<div class="form-group">
 					<label class="form-control" style="box-shadow: none; border: 0">Ingrese Cantidad</label>
 				</div>
 			</div>
-			<div class="col-3 col-md-3">
+			<div class="col-3 col-md-3 col-sm-3">
 				<div class="form-group">
 					{{ form.cantidad }}
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2 col-md-2">
+			<div class="col-2 col-md-2 col-sm-2">
 				<div class="form-group">
 					<label class="form-control" style="box-shadow: none; border: 0">Ingrese Pre.Cred. </label>
 				</div>
 			</div>
-			<div class="col-3 col-md-3">
+			<div class="col-3 col-md-3 col-sm-3">
 				<div class="form-group">
 					{{ form.precio_cred }}
 				</div>
 			</div>
 		</div>
 		<div class="row">
-			<div class="col-2 col-md-2">
+			<div class="col-2 col-md-2 col-sm-2">
 				<div class="form-group">
 					<label class="form-control" style="box-shadow: none; border: 0">Monto Crédito</label>
 				</div>
 			</div>
-			<div class="col-3 col-md-3">
+			<div class="col-3 col-md-3 col-sm-3">
 				<div class="form-group">
 					{{ form.monto_cred }}
 					{{ form.monto_cobr }}
 				</div>
 			</div>
-			<div class="col-3 col-md-3">
+			<div class="col-3 col-md-3 col-sm-3">
 				<div class="form-group">
 					<input class="btn btn-primary" type="submit" value="Guardar">
 					<a class="btn btn-danger" href="{% url 'control:crelst' iddespacho idproducto %}">Regresar</a>
