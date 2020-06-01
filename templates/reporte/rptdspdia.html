@@ -22,7 +22,7 @@
 			{%		for itm in misdespachos_list %}
 			<tr>
 				<td>{{ itm.controlturno__fecha }}</td>
-				<td>{{ itm.producto__descripcion }}</td>
+				<td>{{ itm.producto.descripcion }}</td>
 				<td>{{ itm.despachado }}</td>
 			</tr>
 			{%		endfor %}

@@ -926,10 +926,9 @@ class ReporteResumenGalones(ListView):
 	template_name = 'reporte/rptdspdia.html'
 
 	def get_context_data(self, **kwargs):
-		print("------ llego aqui --------")
 		context = super(ReporteResumenGalones, self).get_context_data(**kwargs)
 		print("------ llego aqui 2 --------")
-		milista = self.model.objects.values('controlturno__fecha', 'producto__descripcion').order_by('-controlturno__fecha').annotate(despachado=Sum(gal_despachados))
+		milista = self.model.objects.values('controlturno__fecha', 'producto').order_by('-controlturno__fecha').annotate(despachado=Sum(gal_despachados))
 		print("------ llego aqui 3 --------")
 		context['misdespachos_list'] = milista
 		return context
