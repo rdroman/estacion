@@ -919,12 +919,11 @@ class ReporteGastosDetalle(ListView):
 	paginate_by = 10
 
 
-
 from django.db.models import Sum
 
 class ReporteResumenGalones(ListView):
 	model = Despacho
-	template_name = 'reporte/rptvtadia.html'
+	template_name = 'reporte/rptdspdia.html'
 
 	def get_context_data(self, **kwargs):
 		context = super(CobranzaDelete, self).get_context_data(**kwargs)
