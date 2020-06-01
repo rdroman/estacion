@@ -11,9 +11,9 @@
 		<!-- CABECERA DE LA TABLA -->
 		<thead>
 			<tr>
-				<td>Fecha</td>
-				<td>Producto</td>
-				<td>Glns.Despachados</td>
+				<th>Fecha</th>
+				<th>Producto</th>
+				<th>Glns.Despachados</th>
 			</tr>
 		</thead>
 		<!-- CUERPO DE LA TABLA -->
@@ -21,8 +21,8 @@
 			{%	if misdespachos_list %}
 			{%		for itm in misdespachos_list %}
 			<tr>
-				<td>{{ itm.controlturno__fecha }}</td>
-				<td>{{ itm.producto.descripcion }}</td>
+				<td>{{ itm.turno_id__fecha }}</td>
+				<td>{{ itm.producto_id__descripcion }}</td>
 				<td>{{ itm.despachado }}</td>
 			</tr>
 			{%		endfor %}

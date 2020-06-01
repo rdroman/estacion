@@ -11,17 +11,17 @@
 		<!-- CABECERA DE LA TABLA -->
 		<thead>
 			<tr>
-				<td>Fecha</td>
-				<td>Descripcion</td>
-				<td>Monto</td>
+				<th>Fecha</th>
+				<th>Descripcion</th>
+				<th>Monto</th>
 			</tr>
 		</thead>
 		<!-- CUERPO DE LA TABLA -->
 		<tbody>
-			{%	if object_list %}
-			{%		for itm in object_list %}
+			{%	if misgastos_list %}
+			{%		for itm in misgastos_list %}
 			<tr>
-				<td>{{ itm.turno.fecha }}</td>
+				<td>{{ itm.turno_id__fecha }}</td>
 				<td>{{ itm.descripcion }}</td>
 				<td>{{ itm.monto }}</td>
 			</tr>

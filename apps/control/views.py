@@ -916,7 +916,12 @@ class ReporteResumenDiario(ListView):
 class ReporteGastosDetalle(ListView):
 	model = Gasto
 	template_name = 'reporte/rptgtodia.html'
-	paginate_by = 10
+
+	def get_context_data(self, **kwargs):
+		context = super(ReporteGastosDetalle, self).get_context_data(**kwargs)
+		milista = self.model.objects.values('turno_id__fecha', 'descripcion', 'monto').order_by('-turno_id__fecha', 'descripcion')
+		context['misgastos_list'] = milista
+		return context
 
 
 from django.db.models import Sum
@@ -927,9 +932,7 @@ class ReporteResumenGalones(ListView):
 
 	def get_context_data(self, **kwargs):
 		context = super(ReporteResumenGalones, self).get_context_data(**kwargs)
-		print("------ llego aqui 2 --------")
-		milista = self.model.objects.values('controlturno__fecha', 'producto').order_by('-controlturno__fecha').annotate(despachado=Sum(gal_despachados))
-		print("------ llego aqui 3 ------------------")
+		milista = self.model.objects.values('turno_id__fecha', 'producto_id__descripcion').order_by('-turno_id__fecha', '-producto_id__descripcion').annotate(despachado=Sum('gal_despachados'))
 		context['misdespachos_list'] = milista
 		return context
 
