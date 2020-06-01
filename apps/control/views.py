@@ -929,7 +929,7 @@ class ReporteResumenGalones(ListView):
 		context = super(ReporteResumenGalones, self).get_context_data(**kwargs)
 		print("------ llego aqui 2 --------")
 		milista = self.model.objects.values('controlturno__fecha', 'producto').order_by('-controlturno__fecha').annotate(despachado=Sum(gal_despachados))
-		print("------ llego aqui 3 --------")
+		print("------ llego aqui 3 ------------------")
 		context['misdespachos_list'] = milista
 		return context
 
