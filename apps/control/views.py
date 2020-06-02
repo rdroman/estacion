@@ -916,6 +916,7 @@ class ReporteResumenDiario(ListView):
 class ReporteGastosDetalle(ListView):
 	model = Gasto
 	template_name = 'reporte/rptgtodia.html'
+	paginate_by = 5
 
 	def get_context_data(self, **kwargs):
 		context = super(ReporteGastosDetalle, self).get_context_data(**kwargs)

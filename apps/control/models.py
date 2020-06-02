@@ -75,7 +75,7 @@ class Gasto(models.Model):
 	monto = models.DecimalField(max_digits=8, decimal_places=2, default=0.00)
 
 	class Meta:
-		ordering = ['-controlturno__fecha']
+		ordering = ['-turno__fecha']
 
 class Cobranza(models.Model):
 	turno = models.ForeignKey(ControlTurno, on_delete=models.CASCADE)
