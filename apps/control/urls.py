@@ -3,6 +3,7 @@ from apps.control.views import index, TurnoList, TurnoCreate, TurnoUpdate, Turno
                                 DespachoList, DespachoCreate, DespachoUpdate, DespachoDelete, \
                                 DescuentoList, DescuentoCreate, DescuentoDelete, \
                                 CreditoList, CreditoCreate, CreditoDelete, \
+                                CreditoTotalList, CreditoTotalUpdate, \
                                 DevolucionList, DevolucionCreate, DevolucionDelete, \
                                 GastoList, GastoCreate, GastoDelete, \
                                 CobranzaList, CobranzaCreate, CobranzaDelete, \
@@ -25,6 +26,8 @@ urlpatterns = [
 	url(r'^credito_listar/(?P<midespacho>\d+)/(?P<miproducto>.*)/$', login_required(CreditoList.as_view()), name='crelst'),
 	url(r'^credito_agregar/(?P<pkdespacho>\d+)/(?P<pkproducto>.*)/$', login_required(CreditoCreate.as_view()), name='creadd'),
 	url(r'^credito_eliminar/(?P<pk>\d+)/$', login_required(CreditoDelete.as_view()), name='credel'),
+	url(r'^creditos_listar', login_required(CreditoTotalList.as_view()), name='cretotlst'),
+	url(r'^creditos_editar/(?P<pk>\d+)/$', login_required(CreditoTotalUpdate.as_view()), name='cretotedt'),
 	url(r'^devolucion_listar/(?P<midespacho>\d+)/(?P<miproducto>.*)/$', login_required(DevolucionList.as_view()), name='devlst'),
 	url(r'^devolucion_agregar/(?P<pkdespacho>\d+)/(?P<pkproducto>.*)/$', login_required(DevolucionCreate.as_view()), name='devadd'),
 	url(r'^devolucion_eliminar/(?P<pk>\d+)/$', login_required(DevolucionDelete.as_view()), name='devdel'),

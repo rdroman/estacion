@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse, HttpResponseRedirect
 from django.core.urlresolvers import reverse_lazy, reverse
 from django.views.generic import ListView, CreateView, UpdateView, DeleteView
-from apps.control.forms import ControlTurnoForm, DespachoForm, DescuentoForm, CreditoForm, DevolucionForm, GastoForm, CobranzaForm
+from apps.control.forms import ControlTurnoForm, DespachoForm, DescuentoForm, CreditoForm, CreditoTotalForm, DevolucionForm, GastoForm, CobranzaForm
 from apps.control.models import ControlTurno, Despacho, Descuento, Credito, Devolucion, Gasto, Cobranza
 from apps.grifo.models import Producto, Cliente
 from django.core import serializers
@@ -594,6 +594,21 @@ class CreditoDelete(DeleteView):
 		objcredito = self.model.objects.get(id = pkcred)
 		context['objcredito'] = objcredito
 		return context
+
+
+
+class CreditoTotalList(ListView):
+	model = Credito
+	template_name = 'control/cretotlst.html'
+	paginate_by = 4
+
+
+class CreditoTotalUpdate(UpdateView):
+	model = Credito
+	template_name = 'control/cretotadd.html'
+	form_class = CreditoTotalForm
+	success_url = reverse_lazy('control:cretotlst')
+
 
 
 

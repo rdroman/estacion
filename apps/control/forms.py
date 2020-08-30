@@ -241,3 +241,42 @@ class CobranzaForm(forms.ModelForm):
 			'credito': forms.HiddenInput(),
 			'monto_cobro': forms.NumberInput(attrs={'class':'form-control'}),
 		}
+
+
+
+
+class CreditoTotalForm(forms.ModelForm):
+	
+	class Meta:
+		model = Credito
+
+		fields = [
+			'despacho',
+			'cliente',
+			'producto',
+			'precio_cred',
+			'cantidad',
+			'monto_cred',
+			'monto_cobr',
+			'cobrado'
+		]
+		labels = {
+			'despacho' : 'Despacho ID',
+			'cliente' : 'Cliente ID',
+			'producto' : 'Producto ID',
+			'precio_cred' : 'Pre.Credito',
+			'cantidad' : 'Cantidad Glns.',
+			'monto_cred' : 'Monto Credito',
+			'monto_cobr' : 'Monto Cobrado',
+			'cobrado' : 'Cobrado'
+		}
+		widgets = {
+			'despacho': forms.NumberInput(attrs={'class':'form-control', 'readonly':True}),
+			'cliente': forms.Select(attrs={'class':'form-control'}),
+			'producto' : forms.Select(attrs={'class':'form-control'}),
+			'precio_cred': forms.NumberInput(attrs={'class':'form-control'}),
+			'cantidad': forms.NumberInput(attrs={'class':'form-control'}),
+			'monto_cred': forms.NumberInput(attrs={'class':'form-control'}),
+			'monto_cobr': forms.NumberInput(attrs={'class':'form-control'}),
+			'cobrado': forms.CheckboxInput(attrs={'class':'form-control'})
+		}
